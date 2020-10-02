@@ -7,28 +7,24 @@
     <title>Phasing Sample</title>
 </head>
 <body>
-<!-- image in player
-draw triangle in spinner canvas
+<!-- 
 play/pause onclick
 fix sides so it always spans the entire width of the screen
-onchange, change color on hover
-refactor old playercanvas for the loop canvas
+
+refactor old playercanvas for the loop canvas as a grayed out box to show where the loop is
 add a line to show where it plays in relationship to the image
 add animation for the 2 lines inside of loop -->
     <div class="Player-Area">
         <h4>Phasing Panning Looper</h4>
         <div class="Player">
-
-            
-
             <canvas id="play"></canvas>
-            <!-- if playing show spinner : click to play or toggle between the two -->
             <img id="canvasImg" src="waveform.png" alt="screenshotFromAudacity"></img>
             <!-- <canvas id="playerCanvas"></canvas> -->
         </div>
     </div>
   <script src="https://cdn.rawgit.com/mohayonao/web-audio-api-shim/master/build/web-audio-api-shim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
   <script src="itsgonnarain.js"></script>
 </body>
 </html>

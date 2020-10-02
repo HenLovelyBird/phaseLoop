@@ -27,28 +27,32 @@ fetch('itsgonnarainClip.wav')
     })
     .catch(e => console.error(e));
 
-// canvas image --> canvas
-window.onload = function () {
-    let canvas = document.getElementById("play");
-    let ctx = canvas.getContext("2d");
-    let img = document.getElementById("play-64.png");
-    ctx.drawImage(img, 10, 10);
+
+// draw img of play button --> canvas:
+var canvas = document.getElementById('play');
+var context = canvas.getContext('2d');
+var imageObj = new Image();
+
+imageObj.onload = function () {
+    context.drawImage(imageObj, 125, 40);
 };
+imageObj.src = 'play-64.png';
 
-// draw a triangle inside of the circle canvas
-// window.onload = function draw() {
-//     var canvas = document.getElementById('play');
-//     if (canvas.getContext) {
-//         var context = canvas.getContext('2d');
+// toggle btwn play and spinner onclick
+const ppbutton = document.getElementById("play");
+ppbutton.addEventListener("click", playPause);
 
-//         context.beginPath();
-//         context.moveTo(50, 50);
-//         context.lineTo(100, 75);
-//         context.lineTo(100, 25);
-//         context.fillStyle = 'green';
-//         context.fill()
-//         context.lineWidth = 10;
-//         context.strokeStyle = 'black';
-//         cotext.strokeStyle();
-//     }
-// }
+soundClip = document.getElementById("itsgonnarainClip.wav");
+function playPause() {
+    if (soundClip.paused) {
+        soundClip.play();
+        ppbutton.innerHTML = "Pause";
+    }
+    else {
+        soundClip.pause();
+        ppbutton.innerHTML = "Play";
+    }
+}
+
+// draw canvas on img where the loop is, illustrate with lines the two loops as it plays:
+
