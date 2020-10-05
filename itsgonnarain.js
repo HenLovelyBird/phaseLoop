@@ -27,6 +27,22 @@ fetch('itsgonnarainClip.wav')
     })
     .catch(e => console.error(e));
 
+// toggle btwn play soundClip and pause onclick
+let ppbutton = document.getElementById("play");
+ppbutton.addEventListener("click", playPause);
+
+soundClip = document.getElementById('itsgonnarainClip.wav');
+
+function playPause() {
+    if (soundClip.paused) {
+        soundClip.play();
+        ppbutton.innerHTML = ".spin"
+    }
+    else {
+        soundClip.spin();
+        ppbutton.innerHTML = "play";
+    }
+};
 
 // draw img of play button --> canvas:
 var canvas = document.getElementById('play');
@@ -38,19 +54,23 @@ imageObj.onload = function () {
 };
 imageObj.src = 'play-64.png';
 
-// toggle btwn play and spinner onclick
-const ppbutton = document.getElementById("play");
-ppbutton.addEventListener("click", playPause);
+// draw spinner --> canvas:
+var canvas = document.getElementById('.spin');
+var context = canvas.getContext('2d');
+var imageObj = new Image();
 
-soundClip = document.getElementById("itsgonnarainClip.wav");
-function playPause() {
-    if (soundClip.paused) {
-        soundClip.play();
-        ppbutton.innerHTML = "Pause";
-    }
-    else {
-        soundClip.pause();
-        ppbutton.innerHTML = "Play";
+imageObj.onload = function () {
+    context.drawImage(imageObj, 125, 40);
+};
+imageObj.src = '.spin'
+
+// toggle btwn play and spinner imgs onclick
+function toggleImg() {
+    let play = document.getElementById("play");
+    if (play.style.display === "play") {
+        play.style.display = ".spin";
+    } else {
+        play.style.display = "play";
     }
 }
 

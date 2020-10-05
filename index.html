@@ -8,7 +8,10 @@
 </head>
 <body>
 <!-- 
-play/pause onclick
+play/pause sound onclick
+
+toggle btwn play button and spinner onclick
+
 fix sides so it always spans the entire width of the screen
 
 refactor old playercanvas for the loop canvas as a grayed out box to show where the loop is
@@ -17,9 +20,11 @@ add animation for the 2 lines inside of loop -->
     <div class="Player-Area">
         <h4>Phasing Panning Looper</h4>
         <div class="Player">
-            <canvas id="play"></canvas>
-            <img id="canvasImg" src="waveform.png" alt="screenshotFromAudacity"></img>
-            <!-- <canvas id="playerCanvas"></canvas> -->
+              
+            <canvas id="play" onclick="playPause(); toggleImg()"></canvas>
+            <!-- <canvas class="spin" onclick="playPause()"><source src="itsgonnarainClip.wav" type="wav"></canvas> -->
+            <img id="waveformImg" src="waveform.png" alt="screenshotFromAudacity"><!-- <canvas id="loopingCanvas"></canvas> --></img>           
+
         </div>
     </div>
   <script src="https://cdn.rawgit.com/mohayonao/web-audio-api-shim/master/build/web-audio-api-shim.min.js"></script>
