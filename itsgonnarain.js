@@ -1,9 +1,10 @@
 // audio and params
 let audioContext = new AudioContext();
 
+let sourceNode = audioContext.createBufferSource();
+let pannerNode = audioContext.createStereoPanner();
+
 function startLoop(audioBuffer, pan = 0, rate = 1) {
-    let sourceNode = audioContext.createBufferSource();
-    let pannerNode = audioContext.createStereoPanner();
 
     sourceNode.buffer = audioBuffer;
     sourceNode.loop = true;
@@ -15,8 +16,6 @@ function startLoop(audioBuffer, pan = 0, rate = 1) {
     sourceNode.connect(pannerNode);
     pannerNode.connect(audioContext.destination);
 
-    sourceNode.start(0, 5.05);
-    sourceNode.stop(12.02, 1.12)
 }
 fetch('itsgonnarainClip.wav')
     .then(response => response.arrayBuffer())
@@ -27,21 +26,25 @@ fetch('itsgonnarainClip.wav')
     })
     .catch(e => console.error(e));
 
-// toggle btwn play soundClip and pause onclick
-let ppbutton = document.getElementById("play");
+// toggle btwn imgs and play/pause onclick
+let ppbutton = document.getElementById("playPause");
 ppbutton.addEventListener("click", playPause);
 
-soundClip = document.getElementById('itsgonnarainClip.wav');
-
+let isPaused = true;
 function playPause() {
-    if (soundClip.paused) {
-        soundClip.play();
-        ppbutton.innerHTML = ".spin"
+    if (isPaused) {
+        sourceNode.start(0, 5.05);
+        isPaused = false;
+        canvasSpinner.style.display = "block";
+        canvas.style.display = "none";
     }
     else {
-        soundClip.spin();
-        ppbutton.innerHTML = "play";
+        sourceNode.stop(12.02, 1.12)
+        isPaused = true;
+        canvas.style.display = "block";
+        canvasSpinner.style.display = "none";
     }
+
 };
 
 // draw img of play button --> canvas:
@@ -55,24 +58,15 @@ imageObj.onload = function () {
 imageObj.src = 'play-64.png';
 
 // draw spinner --> canvas:
-var canvas = document.getElementById('.spin');
-var context = canvas.getContext('2d');
-var imageObj = new Image();
+var canvasSpinner = document.getElementById('spin');
+canvasSpinner.style.display = "none"
+var contextSpinner = canvasSpinner.getContext('2d');
+var imageObjSpinner = new Image();
 
-imageObj.onload = function () {
-    context.drawImage(imageObj, 125, 40);
+imageObjSpinner.onload = function () {
+    contextSpinner.drawImage(imageObjSpinner, 125, 40);
 };
-imageObj.src = '.spin'
-
-// toggle btwn play and spinner imgs onclick
-function toggleImg() {
-    let play = document.getElementById("play");
-    if (play.style.display === "play") {
-        play.style.display = ".spin";
-    } else {
-        play.style.display = "play";
-    }
-}
+imageObjSpinner.src = 'spin'
 
 // draw canvas on img where the loop is, illustrate with lines the two loops as it plays:
 

@@ -24,7 +24,13 @@ align-items: center;}
     border-radius: 50%;
     cursor: pointer;
 }
-    .spin {
+#playPause{
+  border: 0; 
+  background: none;
+}
+button:focus {outline:0;}
+
+    #spin {
         border: 16px solid #4e03ff;
         border-radius: 50%;
         border-top: 16px solid #5037cf;
