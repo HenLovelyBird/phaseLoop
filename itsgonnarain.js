@@ -15,7 +15,16 @@ function startLoop(audioBuffer, pan = 0, rate = 1) {
 
     sourceNode.connect(pannerNode);
     pannerNode.connect(audioContext.destination);
+    // sourceNode.disconnect(pannerNode);
 
+    // $(document).ready(function () {
+    //     $("#start").click(function () {
+    //         osc.connect(ctx.destination);
+    //     });
+    //     $("#stop").click(function () {
+    //         osc.disconnect(ctx.destination);
+    //     });
+    // });
 }
 fetch('itsgonnarainClip.wav')
     .then(response => response.arrayBuffer())
@@ -33,19 +42,25 @@ ppbutton.addEventListener("click", playPause);
 let isPaused = true;
 function playPause() {
     if (isPaused) {
-        sourceNode.start(0, 5.05);
+        sourceNode.start(0);
         isPaused = false;
         canvasSpinner.style.display = "block";
         canvas.style.display = "none";
     }
     else {
-        sourceNode.stop(12.02, 1.12)
+        sourceNode.stop()
         isPaused = true;
         canvas.style.display = "block";
         canvasSpinner.style.display = "none";
     }
-
 };
+// stopBtn.onclick = function () {
+//     audioCtx.close().then(function () {
+//         startBtn.removeAttribute('disabled');
+//         susresBtn.setAttribute('disabled', 'disabled');
+//         stopBtn.setAttribute('disabled', 'disabled');
+//     });
+// }
 
 // draw img of play button --> canvas:
 var canvas = document.getElementById('play');
